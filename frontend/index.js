@@ -3,7 +3,8 @@ Ext.ns("Test");
 const usersDataStore = Ext.create("Ext.data.Store", {
   data: [],
 
-  // FIRST CASE is to use a fetched data store
+  // ### FIRST CASE is to use a fetched data store ###
+
   // proxy: {
   //   type: "ajax",
   //   url: "/api/users",
@@ -47,25 +48,23 @@ Ext.define("Test.UserList", {
       handler() {
         //your logic will be here;
 
-        // FIRST CASE is to use a fetched data store
+        // ### FIRST CASE is to use a fetched data store ###
+
         // usersDataStore.load();
 
-        // SECOND CASE is to use a button to dynamically update the store
+        // ### SECOND CASE is to use a button to dynamically update the store ###
 
-        // Clear previous data before update
         usersDataStore.removeAll();
 
-        // Update the proxy dynamically
         usersDataStore.setProxy({
           type: "ajax",
-          url: "/api/users", 
+          url: "/api/users",
           reader: {
             type: "json",
             rootProperty: "users",
           },
         });
 
-        // Load the data after setting the proxy
         usersDataStore.load({
           callback: (records, operation, success) => {
             if (success) {
@@ -75,6 +74,7 @@ Ext.define("Test.UserList", {
             }
           },
         });
+
       },
     },
   ],
